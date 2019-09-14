@@ -10,48 +10,37 @@ var currentYear = date.getFullYear();
 var currentMonth = date.getMonth() + 1;
 var currentDay = date.getDate();
 
+//check in console accurate date
 console.log( "The year is "+currentYear + ", the month is "+ currentMonth + ", the day is "+currentDay+ ".");
 console.log(date);
+
 //current date minus the date born to find the difference
 var aliveYears = currentYear - birthYear;
 var aliveMonths= currentMonth - birthMonth;
 var aliveDays = currentDay - birthDay;
-
 var number= birthYear;
-var count= 0;
+
+/*check if each year is divisible by 4 with modulo operator
+if so, add to the numleaps for every leap year.*/
+var numleaps= 0;
 while (number <= currentYear) {
     if (number % 4 == 0) {
-        count++;
+        numleaps++;
     }
     number++;
 }
-console.log(count);
-//doesn't take into account leap year, and makes assumption of 30 days in each month
-var days = aliveDays + aliveMonths*30+ aliveYears*365 + count;
+
+//check number of leaps is correct in dev console
+console.log(numleaps);
+
+//does take into account leap year by adding numleaps, but makes assumption of 30 days in each month
+var days = aliveDays + aliveMonths*30+ aliveYears*365 + numleaps;
 console.log("You've been alive "+days+ " days.");
-
-
-
 
 var paragraph = document.getElementById("days");
 paragraph.textContent += "You've been alive " + days+" days.";
 
-
 /* things to do yet
--take into account leap year 2020,2016,2014 etc 366 days could do mod4
 -take into account each month is different number of days 
-check if each year is divisible by 4 with modulo operator
-change the count of February days for every leap year. */
-var jan = 31;
-var feb = 28;
-// var feb = 29; ---when year is mod4
-var mar = 31;
-var april = 30;
-var may = 31;
-var june = 30;
-var july = 31;
-var aug = 31;
-var sep = 30;
-var oct = 31;
-var nov = 30;
-var dec = 31;
+*/
+
