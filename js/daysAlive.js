@@ -2,6 +2,15 @@
 var birthMonth = prompt("What number month were you born in?");
 var birthDay = prompt("What day were you born on?");
 var birthYear = prompt("What year were you born in?");
+ 
+
+/* var month = document.getElementById('month');
+var birthMonth = month.value;
+birthMonth = Number(birthMonth);
+var day = document.getElementById('day');
+var birthDay = day.value;
+var year = document.getElementById('year');
+var birthYear = year.value; */
 
 //get current date
 date = new Date();
@@ -43,4 +52,8 @@ paragraph.textContent += "You've been alive " + days+" days.";
 /* things to do yet
 -take into account each month is different number of days 
 */
+var calculatedays = function() {
+    paragraph.textContent += "You've been alive " + days+ " days.";
+}
 
+document.getElementsByClassName('year')[0].addEventListener('click', calculatedays);
