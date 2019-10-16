@@ -1,16 +1,15 @@
 //user inputs birthdate
-var birthMonth = prompt("What number month were you born in?");
-var birthDay = prompt("What day were you born on?");
-var birthYear = prompt("What year were you born in?");
+//var birthMonth = prompt("What number month were you born in?");
+//var birthDay = prompt("What day were you born on?");
+//var birthYear = prompt("What year were you born in?");
  
 
-/* var month = document.getElementById('month');
-var birthMonth = month.value;
-birthMonth = Number(birthMonth);
-var day = document.getElementById('day');
-var birthDay = day.value;
-var year = document.getElementById('year');
-var birthYear = year.value; */
+var birthMonth = document.getElementById('month');
+var birthDay = document.getElementById('day');
+var birthYear = document.getElementById('year');
+birthMonth = birthMonth.value;
+birthDay = birthDay.value;
+birthYear = birthYear.value;
 
 //get current date
 date = new Date();
@@ -23,37 +22,42 @@ var currentDay = date.getDate();
 console.log( "The year is "+currentYear + ", the month is "+ currentMonth + ", the day is "+currentDay+ ".");
 console.log(date);
 
-//current date minus the date born to find the difference
-var aliveYears = currentYear - birthYear;
-var aliveMonths= currentMonth - birthMonth;
-var aliveDays = currentDay - birthDay;
-var number= birthYear;
+
+var calculatedays = function() {
+    var birthMonth = document.getElementById('month');
+    var birthDay = document.getElementById('day');
+    var birthYear = document.getElementById('year');
+    birthYear = birthYear.value;
+    birthDay = birthDay.value;
+    birthMonth = birthMonth.value;
+    console.log(birthMonth);
+    console.log(birthYear);
+    console.log(birthDay);
+    //current date minus birth dates for difference
+    var aliveYears = currentYear - birthYear;
+    var aliveMonths= currentMonth - birthMonth;
+    var aliveDays = currentDay - birthDay;
+    var number= birthYear;
 
 /*check if each year is divisible by 4 with modulo operator
 if so, add to the numleaps for every leap year.*/
-var numleaps= 0;
-while (number <= currentYear) {
-    if (number % 4 == 0) {
-        numleaps++;
+    var numleaps= 0;
+    while (number <= currentYear) {
+        if (number % 4 == 0) {
+            numleaps++;
+        }
+        number++;
     }
-    number++;
+
+    //check number of leaps is correct in dev console
+    console.log("There have been" + numleaps + " Leap Years accounted for.");
+
+    //does take into account leap year by adding numleaps, but makes assumption of 30 days in each month
+    var days = aliveDays + aliveMonths*30+ aliveYears*365 + numleaps;
+    console.log("You've been alive "+days+ " days.");
+
+    var paragraph = document.getElementById("days");
+    paragraph.textContent += "You've been alive " + days+" days.";
 }
 
-//check number of leaps is correct in dev console
-console.log(numleaps);
-
-//does take into account leap year by adding numleaps, but makes assumption of 30 days in each month
-var days = aliveDays + aliveMonths*30+ aliveYears*365 + numleaps;
-console.log("You've been alive "+days+ " days.");
-
-var paragraph = document.getElementById("days");
-paragraph.textContent += "You've been alive " + days+" days.";
-
-/* things to do yet
--take into account each month is different number of days 
-*/
-var calculatedays = function() {
-    paragraph.textContent += "You've been alive " + days+ " days.";
-}
-
-document.getElementsByClassName('year')[0].addEventListener('click', calculatedays);
+document.getElementsByClassName('bday')[0].addEventListener('click', calculatedays);
